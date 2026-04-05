@@ -1,13 +1,12 @@
-import type { Metadata } from "next";
+"use client";
+
 import Link from "next/link";
+import Image from "next/image";
 import { Award, ArrowRight, Heart, BookOpen, Users } from "lucide-react";
 import SectionHeading from "@/components/SectionHeading";
+import ScrollReveal from "@/components/ScrollReveal";
+import { images } from "@/lib/images";
 import { FloatingShapes } from "@/components/illustrations";
-
-export const metadata: Metadata = {
-  title: "Members",
-  description: "Meet the dedicated team behind Bal Sansar Sanstha — the people driving change for vulnerable communities in Rajasthan.",
-};
 
 const leadership = [
   {
@@ -53,43 +52,58 @@ export default function MembersPage() {
           <div className="absolute top-20 right-20 w-72 h-72 bg-primary/15 rounded-full blur-[100px]" />
         </div>
         <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 text-center">
-          <span className="inline-flex items-center gap-2 rounded-full bg-white/10 backdrop-blur-sm px-4 py-1.5 text-sm font-medium text-primary-light mb-6 border border-white/10">
-            <Users className="h-4 w-4" />
-            Our People
-          </span>
-          <h1 className="text-4xl sm:text-5xl font-bold text-white mb-6">Members & Team</h1>
-          <p className="text-lg text-gray-300 max-w-2xl mx-auto leading-relaxed">
-            Meet the dedicated individuals who drive Bal Sansar Sanstha&apos;s mission forward —
-            from our visionary founder to the committed members on the ground.
-          </p>
+          <ScrollReveal>
+            <span className="inline-flex items-center gap-2 rounded-full bg-white/10 backdrop-blur-sm px-4 py-1.5 text-sm font-medium text-primary-light mb-6 border border-white/10">
+              <Users className="h-4 w-4" />
+              Our People
+            </span>
+          </ScrollReveal>
+          <ScrollReveal delay={0.1}>
+            <h1 className="text-4xl sm:text-5xl font-bold text-white mb-6">Members & Team</h1>
+          </ScrollReveal>
+          <ScrollReveal delay={0.2}>
+            <p className="text-lg text-gray-300 max-w-2xl mx-auto leading-relaxed">
+              Meet the dedicated individuals who drive Bal Sansar Sanstha&apos;s mission forward —
+              from our visionary founder to the committed members on the ground.
+            </p>
+          </ScrollReveal>
         </div>
       </section>
 
       {/* Founder Spotlight */}
       <section className="py-20 sm:py-28">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <SectionHeading tag="Leadership" title="Founder & Chairperson" />
+          <ScrollReveal>
+            <SectionHeading tag="Leadership" title="Founder & Chairperson" />
+          </ScrollReveal>
           {leadership.map((person) => (
-            <div key={person.name} className="mt-12 rounded-3xl bg-gradient-to-br from-muted to-white border border-gray-100 p-8 sm:p-12 relative overflow-hidden">
-              <FloatingShapes />
-              <div className="relative grid grid-cols-1 lg:grid-cols-4 gap-10 items-center">
-                <div className="text-center">
-                  <div className="inline-flex h-44 w-44 items-center justify-center rounded-full bg-gradient-to-br from-primary/20 to-secondary/20 border-4 border-white shadow-xl text-6xl">
-                    👤
+            <ScrollReveal key={person.name} delay={0.2}>
+              <div className="mt-12 rounded-3xl bg-gradient-to-br from-muted to-white border border-gray-100 p-8 sm:p-12 relative overflow-hidden">
+                <FloatingShapes />
+                <div className="relative grid grid-cols-1 lg:grid-cols-4 gap-10 items-center">
+                  <div className="text-center">
+                    <div className="inline-block rounded-full overflow-hidden border-4 border-white shadow-xl h-44 w-44">
+                      <Image
+                        src={images.about.mission}
+                        alt={person.name}
+                        width={200}
+                        height={200}
+                        className="h-full w-full object-cover"
+                      />
+                    </div>
                   </div>
-                  <p className="text-gray-400 text-sm mt-4">Photo placeholder</p>
-                </div>
-                <div className="lg:col-span-3">
-                  <h2 className="text-3xl font-bold text-foreground">{person.name}</h2>
-                  <p className="text-primary font-semibold text-lg mb-4">{person.role}</p>
-                  <p className="text-gray-600 leading-relaxed mb-6">{person.bio}</p>
-                  <div className="inline-flex items-center gap-2 bg-amber-50 border border-amber-100 rounded-full px-5 py-2.5">
-                    <Award className="h-5 w-5 text-amber-600" />
-                    <span className="text-sm font-medium text-amber-800">{person.achievement}</span>
+                  <div className="lg:col-span-3">
+                    <h2 className="text-3xl font-bold text-foreground">{person.name}</h2>
+                    <p className="text-primary font-semibold text-lg mb-4">{person.role}</p>
+                    <p className="text-gray-600 leading-relaxed mb-6">{person.bio}</p>
+                    <div className="inline-flex items-center gap-2 bg-amber-50 border border-amber-100 rounded-full px-5 py-2.5">
+                      <Award className="h-5 w-5 text-amber-600" />
+                      <span className="text-sm font-medium text-amber-800">{person.achievement}</span>
+                    </div>
                   </div>
                 </div>
               </div>
-            </div>
+            </ScrollReveal>
           ))}
         </div>
       </section>
@@ -97,23 +111,27 @@ export default function MembersPage() {
       {/* Executive Committee */}
       <section className="py-20 sm:py-28 bg-muted">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <SectionHeading
-            tag="Governance"
-            title="Executive Committee & Members"
-            description="Experienced professionals guiding the strategic direction of BSS."
-          />
+          <ScrollReveal>
+            <SectionHeading
+              tag="Governance"
+              title="Executive Committee & Members"
+              description="Experienced professionals guiding the strategic direction of BSS."
+            />
+          </ScrollReveal>
           <div className="mt-12 grid grid-cols-1 md:grid-cols-3 gap-6">
-            {executiveMembers.map((member) => (
-              <div key={member.name} className="bg-white rounded-2xl p-8 card-hover border border-gray-100">
-                <div className="h-24 w-24 rounded-full bg-gradient-to-br from-primary/15 to-secondary/15 mx-auto mb-5 flex items-center justify-center text-4xl">
-                  👤
+            {executiveMembers.map((member, i) => (
+              <ScrollReveal key={member.name} delay={i * 0.1}>
+                <div className="bg-white rounded-2xl p-8 card-hover border border-gray-100 h-full">
+                  <div className="h-24 w-24 rounded-full bg-gradient-to-br from-primary/15 to-secondary/15 mx-auto mb-5 flex items-center justify-center">
+                    <Users className="h-10 w-10 text-primary/40" />
+                  </div>
+                  <div className="text-center">
+                    <h3 className="font-bold text-foreground text-lg">{member.name}</h3>
+                    <p className="text-primary text-sm font-medium mb-3">{member.role}</p>
+                    <p className="text-gray-600 text-sm leading-relaxed">{member.bio}</p>
+                  </div>
                 </div>
-                <div className="text-center">
-                  <h3 className="font-bold text-foreground text-lg">{member.name}</h3>
-                  <p className="text-primary text-sm font-medium mb-3">{member.role}</p>
-                  <p className="text-gray-600 text-sm leading-relaxed">{member.bio}</p>
-                </div>
-              </div>
+              </ScrollReveal>
             ))}
           </div>
         </div>
@@ -122,42 +140,48 @@ export default function MembersPage() {
       {/* Team Areas */}
       <section className="py-20 sm:py-28">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <SectionHeading
-            tag="Our Team"
-            title="The People on the Ground"
-            description="Dedicated professionals and volunteers working across our programs and centers."
-          />
+          <ScrollReveal>
+            <SectionHeading
+              tag="Our Team"
+              title="The People on the Ground"
+              description="Dedicated professionals and volunteers working across our programs and centers."
+            />
+          </ScrollReveal>
           <div className="mt-12 grid grid-cols-1 sm:grid-cols-2 gap-6">
-            {teamAreas.map((team) => (
-              <div key={team.area} className="flex items-start gap-5 rounded-2xl bg-white border border-gray-100 p-7 card-hover">
-                <div className="flex h-14 w-14 items-center justify-center rounded-2xl bg-primary/10 text-primary shrink-0">
-                  <team.icon className="h-7 w-7" />
+            {teamAreas.map((team, i) => (
+              <ScrollReveal key={team.area} delay={i * 0.1}>
+                <div className="flex items-start gap-5 rounded-2xl bg-white border border-gray-100 p-7 card-hover h-full">
+                  <div className="flex h-14 w-14 items-center justify-center rounded-2xl bg-primary/10 text-primary shrink-0">
+                    <team.icon className="h-7 w-7" />
+                  </div>
+                  <div>
+                    <h3 className="font-bold text-foreground mb-1">{team.area}</h3>
+                    <p className="text-gray-600 text-sm">{team.description}</p>
+                  </div>
                 </div>
-                <div>
-                  <h3 className="font-bold text-foreground mb-1">{team.area}</h3>
-                  <p className="text-gray-600 text-sm">{team.description}</p>
-                </div>
-              </div>
+              </ScrollReveal>
             ))}
           </div>
         </div>
       </section>
 
       {/* CTA */}
-      <section className="py-16 bg-muted">
-        <div className="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8 text-center">
-          <h2 className="text-3xl font-bold text-foreground mb-4">Join Our Team</h2>
-          <p className="text-gray-600 mb-8">
-            We&apos;re always looking for passionate individuals to join our mission.
-          </p>
-          <Link
-            href="/get-involved"
-            className="inline-flex items-center gap-2 rounded-full bg-primary text-white px-8 py-3 font-semibold hover:bg-primary-dark transition-colors"
-          >
-            Get Involved <ArrowRight className="h-4 w-4" />
-          </Link>
-        </div>
-      </section>
+      <ScrollReveal>
+        <section className="py-16 bg-muted">
+          <div className="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8 text-center">
+            <h2 className="text-3xl font-bold text-foreground mb-4">Join Our Team</h2>
+            <p className="text-gray-600 mb-8">
+              We&apos;re always looking for passionate individuals to join our mission.
+            </p>
+            <Link
+              href="/get-involved"
+              className="inline-flex items-center gap-2 rounded-full bg-primary text-white px-8 py-3 font-semibold hover:bg-primary-dark transition-colors"
+            >
+              Get Involved <ArrowRight className="h-4 w-4" />
+            </Link>
+          </div>
+        </section>
+      </ScrollReveal>
     </>
   );
 }

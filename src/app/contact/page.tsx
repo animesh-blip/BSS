@@ -4,6 +4,7 @@ import { useState } from "react";
 import { Mail, Phone, MapPin, Clock, Send, CheckCircle2, Globe, Sparkles } from "lucide-react";
 import { siteConfig } from "@/lib/site-config";
 import { FloatingShapes } from "@/components/illustrations";
+import ScrollReveal from "@/components/ScrollReveal";
 
 export default function ContactPage() {
   const [submitted, setSubmitted] = useState(false);
@@ -21,14 +22,20 @@ export default function ContactPage() {
           <div className="absolute top-20 right-20 w-72 h-72 bg-primary/15 rounded-full blur-[100px]" />
         </div>
         <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 text-center">
-          <span className="inline-flex items-center gap-2 rounded-full bg-white/10 backdrop-blur-sm px-4 py-1.5 text-sm font-medium text-primary-light mb-6 border border-white/10">
-            <Sparkles className="h-4 w-4" /> Reach Out
-          </span>
-          <h1 className="text-4xl sm:text-5xl font-bold text-white mb-6">Contact Us</h1>
-          <p className="text-lg text-gray-300 max-w-2xl mx-auto leading-relaxed">
-            Have questions, want to volunteer, or interested in partnering with us?
-            We&apos;d love to hear from you.
-          </p>
+          <ScrollReveal>
+            <span className="inline-flex items-center gap-2 rounded-full bg-white/10 backdrop-blur-sm px-4 py-1.5 text-sm font-medium text-primary-light mb-6 border border-white/10">
+              <Sparkles className="h-4 w-4" /> Reach Out
+            </span>
+          </ScrollReveal>
+          <ScrollReveal delay={0.1}>
+            <h1 className="text-4xl sm:text-5xl font-bold text-white mb-6">Contact Us</h1>
+          </ScrollReveal>
+          <ScrollReveal delay={0.2}>
+            <p className="text-lg text-gray-300 max-w-2xl mx-auto leading-relaxed">
+              Have questions, want to volunteer, or interested in partnering with us?
+              We&apos;d love to hear from you.
+            </p>
+          </ScrollReveal>
         </div>
       </section>
 
@@ -38,46 +45,48 @@ export default function ContactPage() {
         <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-12">
             {/* Contact Info */}
-            <div className="space-y-6">
-              <h2 className="text-2xl font-bold text-foreground">Get in Touch</h2>
-              <p className="text-gray-600 leading-relaxed">
-                We respond to all inquiries within 24-48 hours. Don&apos;t hesitate to reach out!
-              </p>
+            <ScrollReveal direction="left">
+              <div className="space-y-6">
+                <h2 className="text-2xl font-bold text-foreground">Get in Touch</h2>
+                <p className="text-gray-600 leading-relaxed">
+                  We respond to all inquiries within 24-48 hours. Don&apos;t hesitate to reach out!
+                </p>
 
-              <div className="space-y-5">
-                <ContactItem icon={<MapPin className="h-5 w-5" />} title="Head Office">
-                  <span>{siteConfig.address.line1}<br />{siteConfig.address.line2}<br />{siteConfig.address.state}</span>
-                </ContactItem>
-                <ContactItem icon={<Mail className="h-5 w-5" />} title="Email">
-                  <a href={`mailto:${siteConfig.email}`} className="hover:text-primary transition-colors block">{siteConfig.email}</a>
-                  <a href={`mailto:${siteConfig.emailAlt}`} className="hover:text-primary transition-colors block text-xs mt-0.5 text-gray-400">{siteConfig.emailAlt}</a>
-                </ContactItem>
-                <ContactItem icon={<Phone className="h-5 w-5" />} title="Phone">
-                  <a href={`tel:${siteConfig.phone}`} className="hover:text-primary transition-colors">{siteConfig.phone}</a>
-                </ContactItem>
-                <ContactItem icon={<Clock className="h-5 w-5" />} title="Office Hours">
-                  <span>Monday – Saturday<br />9:00 AM – 6:00 PM IST</span>
-                </ContactItem>
-                <ContactItem icon={<Globe className="h-5 w-5" />} title="Offices">
-                  <span>Jaipur (HQ) &amp; Ajmer, Rajasthan</span>
-                </ContactItem>
-              </div>
+                <div className="space-y-5">
+                  <ContactItem icon={<MapPin className="h-5 w-5" />} title="Head Office">
+                    <span>{siteConfig.address.line1}<br />{siteConfig.address.line2}<br />{siteConfig.address.state}</span>
+                  </ContactItem>
+                  <ContactItem icon={<Mail className="h-5 w-5" />} title="Email">
+                    <a href={`mailto:${siteConfig.email}`} className="hover:text-primary transition-colors block">{siteConfig.email}</a>
+                    <a href={`mailto:${siteConfig.emailAlt}`} className="hover:text-primary transition-colors block text-xs mt-0.5 text-gray-400">{siteConfig.emailAlt}</a>
+                  </ContactItem>
+                  <ContactItem icon={<Phone className="h-5 w-5" />} title="Phone">
+                    <a href={`tel:${siteConfig.phone}`} className="hover:text-primary transition-colors">{siteConfig.phone}</a>
+                  </ContactItem>
+                  <ContactItem icon={<Clock className="h-5 w-5" />} title="Office Hours">
+                    <span>Monday – Saturday<br />9:00 AM – 6:00 PM IST</span>
+                  </ContactItem>
+                  <ContactItem icon={<Globe className="h-5 w-5" />} title="Offices">
+                    <span>Jaipur (HQ) &amp; Ajmer, Rajasthan</span>
+                  </ContactItem>
+                </div>
 
-              {/* Registration badge */}
-              <div className="rounded-2xl bg-muted border border-gray-100 p-5 mt-8">
-                <h3 className="font-semibold text-foreground text-sm mb-3">Registered Organization</h3>
-                <div className="flex flex-wrap gap-2">
-                  {Object.keys(siteConfig.registration).map((key) => (
-                    <span key={key} className="text-[10px] font-medium bg-white text-gray-500 border border-gray-100 px-2 py-1 rounded">
-                      {key} Registered
-                    </span>
-                  ))}
+                {/* Registration badge */}
+                <div className="rounded-2xl bg-muted border border-gray-100 p-5 mt-8">
+                  <h3 className="font-semibold text-foreground text-sm mb-3">Registered Organization</h3>
+                  <div className="flex flex-wrap gap-2">
+                    {Object.keys(siteConfig.registration).map((key) => (
+                      <span key={key} className="text-[10px] font-medium bg-white text-gray-500 border border-gray-100 px-2 py-1 rounded">
+                        {key} Registered
+                      </span>
+                    ))}
+                  </div>
                 </div>
               </div>
-            </div>
+            </ScrollReveal>
 
             {/* Contact Form */}
-            <div className="lg:col-span-2">
+            <ScrollReveal direction="right" className="lg:col-span-2">
               <div className="rounded-3xl border border-gray-100 bg-white p-8 sm:p-10 shadow-sm">
                 {submitted ? (
                   <div className="text-center py-16">
@@ -127,7 +136,7 @@ export default function ContactPage() {
                   </form>
                 )}
               </div>
-            </div>
+            </ScrollReveal>
           </div>
         </div>
       </section>

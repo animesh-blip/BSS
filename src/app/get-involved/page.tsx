@@ -1,13 +1,10 @@
-import type { Metadata } from "next";
+"use client";
+
 import Link from "next/link";
 import { HandHeart, Users, Building2, Megaphone, Heart, ArrowRight, CheckCircle2, Sparkles } from "lucide-react";
 import SectionHeading from "@/components/SectionHeading";
+import ScrollReveal from "@/components/ScrollReveal";
 import { FloatingShapes } from "@/components/illustrations";
-
-export const metadata: Metadata = {
-  title: "Get Involved",
-  description: "Join Bal Sansar Sanstha as a volunteer, partner, or advocate. There are many ways to support children, women, and communities in Rajasthan.",
-};
 
 const ways = [
   {
@@ -82,15 +79,21 @@ export default function GetInvolvedPage() {
           <div className="absolute bottom-10 right-20 w-80 h-80 bg-secondary/10 rounded-full blur-[100px]" />
         </div>
         <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 text-center">
-          <span className="inline-flex items-center gap-2 rounded-full bg-white/10 backdrop-blur-sm px-4 py-1.5 text-sm font-medium text-primary-light mb-6 border border-white/10">
-            <Sparkles className="h-4 w-4" />
-            Join Our Mission
-          </span>
-          <h1 className="text-4xl sm:text-5xl font-bold text-white mb-6">Get Involved</h1>
-          <p className="text-lg text-gray-300 max-w-2xl mx-auto leading-relaxed">
-            There are many ways to support our mission. Whether you give your time,
-            skills, resources, or voice — every contribution helps empower vulnerable communities.
-          </p>
+          <ScrollReveal>
+            <span className="inline-flex items-center gap-2 rounded-full bg-white/10 backdrop-blur-sm px-4 py-1.5 text-sm font-medium text-primary-light mb-6 border border-white/10">
+              <Sparkles className="h-4 w-4" />
+              Join Our Mission
+            </span>
+          </ScrollReveal>
+          <ScrollReveal delay={0.1}>
+            <h1 className="text-4xl sm:text-5xl font-bold text-white mb-6">Get Involved</h1>
+          </ScrollReveal>
+          <ScrollReveal delay={0.2}>
+            <p className="text-lg text-gray-300 max-w-2xl mx-auto leading-relaxed">
+              There are many ways to support our mission. Whether you give your time,
+              skills, resources, or voice — every contribution helps empower vulnerable communities.
+            </p>
+          </ScrollReveal>
         </div>
       </section>
 
@@ -99,53 +102,57 @@ export default function GetInvolvedPage() {
         <FloatingShapes />
         <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            {ways.map((way) => (
-              <div key={way.title} className="rounded-3xl border border-gray-100 bg-white p-8 card-hover relative overflow-hidden">
-                <div className={`absolute top-0 left-0 right-0 h-1 bg-gradient-to-r ${way.color}`} />
-                <div className={`inline-flex h-14 w-14 items-center justify-center rounded-2xl ${way.bg} mb-5`}>
-                  <way.icon className="h-7 w-7 text-foreground/70" />
+            {ways.map((way, i) => (
+              <ScrollReveal key={way.title} delay={i * 0.12}>
+                <div className="rounded-3xl border border-gray-100 bg-white p-8 card-hover relative overflow-hidden h-full">
+                  <div className={`absolute top-0 left-0 right-0 h-1 bg-gradient-to-r ${way.color}`} />
+                  <div className={`inline-flex h-14 w-14 items-center justify-center rounded-2xl ${way.bg} mb-5`}>
+                    <way.icon className="h-7 w-7 text-foreground/70" />
+                  </div>
+                  <h2 className="text-xl font-bold text-foreground mb-3">{way.title}</h2>
+                  <p className="text-gray-600 leading-relaxed mb-5">{way.description}</p>
+                  <ul className="space-y-2.5 mb-6">
+                    {way.actions.map((action) => (
+                      <li key={action} className="flex items-start gap-2 text-sm text-gray-600">
+                        <CheckCircle2 className="h-4 w-4 text-green-500 mt-0.5 shrink-0" />
+                        {action}
+                      </li>
+                    ))}
+                  </ul>
+                  <Link
+                    href="/contact"
+                    className="inline-flex items-center gap-2 text-primary font-semibold text-sm hover:gap-3 transition-all"
+                  >
+                    {way.cta} <ArrowRight className="h-4 w-4" />
+                  </Link>
                 </div>
-                <h2 className="text-xl font-bold text-foreground mb-3">{way.title}</h2>
-                <p className="text-gray-600 leading-relaxed mb-5">{way.description}</p>
-                <ul className="space-y-2.5 mb-6">
-                  {way.actions.map((action) => (
-                    <li key={action} className="flex items-start gap-2 text-sm text-gray-600">
-                      <CheckCircle2 className="h-4 w-4 text-green-500 mt-0.5 shrink-0" />
-                      {action}
-                    </li>
-                  ))}
-                </ul>
-                <Link
-                  href="/contact"
-                  className="inline-flex items-center gap-2 text-primary font-semibold text-sm hover:gap-3 transition-all"
-                >
-                  {way.cta} <ArrowRight className="h-4 w-4" />
-                </Link>
-              </div>
+              </ScrollReveal>
             ))}
           </div>
         </div>
       </section>
 
       {/* CTA */}
-      <section className="py-16 bg-muted">
-        <div className="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8 text-center">
-          <Users className="h-12 w-12 text-primary mx-auto mb-4" />
-          <h2 className="text-3xl font-bold text-foreground mb-4">Ready to Make a Difference?</h2>
-          <p className="text-gray-600 mb-8 max-w-2xl mx-auto">
-            Contact us and our team will get back to you within 48 hours to discuss
-            how you can contribute to empowering communities.
-          </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Link href="/contact" className="inline-flex items-center justify-center gap-2 rounded-full bg-gradient-to-r from-primary to-primary-dark text-white px-8 py-3.5 font-semibold hover:shadow-lg transition-all">
-              Contact Us
-            </Link>
-            <Link href="/donate" className="inline-flex items-center justify-center gap-2 rounded-full border-2 border-primary text-primary px-8 py-3.5 font-semibold hover:bg-primary hover:text-white transition-colors">
-              <Heart className="h-5 w-5" /> Donate Instead
-            </Link>
+      <ScrollReveal>
+        <section className="py-16 bg-muted">
+          <div className="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8 text-center">
+            <Users className="h-12 w-12 text-primary mx-auto mb-4" />
+            <h2 className="text-3xl font-bold text-foreground mb-4">Ready to Make a Difference?</h2>
+            <p className="text-gray-600 mb-8 max-w-2xl mx-auto">
+              Contact us and our team will get back to you within 48 hours to discuss
+              how you can contribute to empowering communities.
+            </p>
+            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+              <Link href="/contact" className="inline-flex items-center justify-center gap-2 rounded-full bg-gradient-to-r from-primary to-primary-dark text-white px-8 py-3.5 font-semibold hover:shadow-lg transition-all">
+                Contact Us
+              </Link>
+              <Link href="/donate" className="inline-flex items-center justify-center gap-2 rounded-full border-2 border-primary text-primary px-8 py-3.5 font-semibold hover:bg-primary hover:text-white transition-colors">
+                <Heart className="h-5 w-5" /> Donate Instead
+              </Link>
+            </div>
           </div>
-        </div>
-      </section>
+        </section>
+      </ScrollReveal>
     </>
   );
 }
