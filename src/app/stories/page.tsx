@@ -1,80 +1,62 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { ArrowRight, Heart, Quote } from "lucide-react";
+import { ArrowRight, Heart, Quote, MapPin, Sparkles } from "lucide-react";
 import SectionHeading from "@/components/SectionHeading";
+import { FloatingShapes } from "@/components/illustrations";
 
 export const metadata: Metadata = {
   title: "Impact Stories",
-  description:
-    "Read inspiring stories of children and families whose lives have been transformed through Bal Sansar India's programs.",
+  description: "Read inspiring stories of individuals and communities transformed through Bal Sansar Sanstha's programmes in education, health, and skill development.",
 };
 
 const stories = [
   {
-    name: "Priya Sharma",
-    age: 14,
-    location: "Delhi",
-    title: "From Street to Classroom",
-    summary:
-      "Priya was selling flowers on the roadside when our volunteers found her. Today, she is a top student in her class and dreams of becoming a doctor.",
-    quote:
-      "Bal Sansar gave me books instead of flowers. Now I help my mother with my scholarship money, and I am the first in my family to go to school.",
-    program: "Education & Scholarships",
+    name: "SEDI Graduate",
+    location: "Ajmer",
+    title: "From Homemaker to Computer Professional",
+    summary: "A rural woman who had never touched a computer enrolled in the RS-CIT course at SEDI. After completing her certification, she now works at a local business center and teaches other women basic computer skills.",
+    quote: "I never imagined I could work with computers. SEDI gave me not just skills, but the confidence to earn my own livelihood and support my family.",
+    program: "SEDI — Skill Development",
   },
   {
-    name: "Arjun Patel",
-    age: 12,
-    location: "Mumbai",
-    title: "Coding His Way to the Future",
-    summary:
-      "Arjun discovered computers at our digital learning center. From never having touched a computer, he now builds simple websites and teaches other kids.",
-    quote:
-      "I never knew what a computer could do. Now I can create things with code, and I want to build apps that help people like me.",
-    program: "Digital & STEM Learning",
+    name: "Taiyari Beneficiary",
+    location: "Srinagar Block, Ajmer",
+    title: "Knowledge That Saved a Life",
+    summary: "A 16-year-old girl in a remote village learned about nutrition and health through the Taiyari programme. She identified signs of severe anemia in her younger sister and sought medical help in time.",
+    quote: "Before Taiyari, we didn't know what anemia was. The health sessions taught me to recognize the signs. My sister is healthy now because of what I learned.",
+    program: "Taiyari — Health Awareness",
   },
   {
-    name: "Meera Devi",
-    age: 35,
-    location: "Rajasthan",
-    title: "A Mother's Transformation",
-    summary:
-      "Through our women's self-help group, Meera learned tailoring and financial management. She now runs a small business and sends all three of her children to school.",
-    quote:
-      "I used to depend on daily wages. Now I have my own sewing machine and a small shop. My children will have a better life than mine.",
-    program: "Community Development",
+    name: "BSPS Student",
+    location: "Ajmer",
+    title: "First in the Family to Read",
+    summary: "A child from a migrant labor family enrolled at Bal Sansar Public School. Within two years, he not only learned to read and write but also began teaching his parents basic literacy at home.",
+    quote: "My teacher says I am good at studies. I want to become a teacher too, so I can help other children like me who don't have books at home.",
+    program: "BSPS — Education",
   },
   {
-    name: "Rohit Kumar",
-    age: 10,
-    location: "Bihar",
-    title: "Healing Through Health Camps",
-    summary:
-      "Rohit suffered from chronic malnutrition until our health camp identified his condition. With regular nutrition support and medical care, he's now a healthy, active boy.",
-    quote:
-      "The doctors at the health camp told my mother what food I needed. Now I can run and play like other children!",
-    program: "Healthcare & Nutrition",
+    name: "Babli Boli Listener",
+    location: "Ajmer District",
+    title: "A Voice for Rural Women",
+    summary: "Through the Babli Boli rural women listeners' club, a group of women in a remote village gained access to health information and community organizing skills. The club leader went on to advocate for better sanitation facilities.",
+    quote: "The listeners' club gave us a voice. We learned about our rights and health, and together we convinced the panchayat to build toilets in our village.",
+    program: "Babli Boli — Community",
   },
   {
-    name: "Ananya Singh",
-    age: 16,
-    location: "Uttar Pradesh",
-    title: "Dancing Into Confidence",
-    summary:
-      "Ananya was extremely shy and withdrawn. Through our arts program, she discovered a passion for dance. She recently performed at a state-level competition.",
-    quote:
-      "Dancing taught me that I have something special inside me. When I perform on stage, I forget all my worries and feel truly free.",
-    program: "Arts & Cultural Programs",
+    name: "SEDI Tailoring Student",
+    location: "Ajmer",
+    title: "Stitching a New Future",
+    summary: "A young widow with two children learned tailoring through SEDI's sewing course. She started taking orders from her neighborhood and now earns enough to send both children to school.",
+    quote: "Every stitch I make is a step towards my children's future. SEDI didn't just teach me sewing — they gave me hope and independence.",
+    program: "SEDI — Skill Development",
   },
   {
-    name: "Vikram & Sita",
-    age: 0,
-    location: "Maharashtra",
-    title: "A Community Reborn",
-    summary:
-      "An entire village community came together through our development program. What started as a small literacy drive turned into a thriving community center with regular education, health, and skill-building activities.",
-    quote:
-      "Our village has changed completely. Children go to school, women have jobs, and we all look out for each other.",
-    program: "Community Development",
+    name: "Community Health Worker",
+    location: "Tonk District",
+    title: "Reaching 20,000 Through One Programme",
+    summary: "The Taiyari programme trained community health workers who then spread awareness across 30 Gram Panchayats. One worker's efforts alone reached over 500 adolescent girls with reproductive health education.",
+    quote: "When I see young girls making informed decisions about their health, I know our work matters. Taiyari has changed how this entire community thinks about health.",
+    program: "Taiyari — Health Awareness",
   },
 ];
 
@@ -82,46 +64,55 @@ export default function StoriesPage() {
   return (
     <>
       {/* Hero */}
-      <section className="bg-gradient-to-br from-secondary-dark to-foreground py-20 sm:py-28">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 text-center">
-          <span className="inline-block rounded-full bg-white/10 px-4 py-1.5 text-sm font-medium text-primary-light mb-4">
+      <section className="relative bg-gradient-to-br from-foreground via-[#1a2a3e] to-secondary-dark py-24 sm:py-32 overflow-hidden">
+        <div className="absolute inset-0">
+          <div className="absolute top-20 left-20 w-72 h-72 bg-primary/15 rounded-full blur-[100px]" />
+          <div className="absolute bottom-10 right-20 w-80 h-80 bg-secondary/10 rounded-full blur-[100px]" />
+        </div>
+        <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 text-center">
+          <span className="inline-flex items-center gap-2 rounded-full bg-white/10 backdrop-blur-sm px-4 py-1.5 text-sm font-medium text-primary-light mb-6 border border-white/10">
+            <Sparkles className="h-4 w-4" />
             Real Lives, Real Change
           </span>
           <h1 className="text-4xl sm:text-5xl font-bold text-white mb-6">Impact Stories</h1>
           <p className="text-lg text-gray-300 max-w-2xl mx-auto leading-relaxed">
-            Every number in our reports represents a real child with real dreams. Here
-            are some of the lives that have been transformed through your support.
+            Every number in our reports represents a real person with real dreams.
+            Here are some of the lives transformed through BSS programmes.
           </p>
         </div>
       </section>
 
       {/* Stories Grid */}
-      <section className="py-20 sm:py-28">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+      <section className="py-20 sm:py-28 relative overflow-hidden">
+        <FloatingShapes />
+        <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             {stories.map((story) => (
               <article
-                key={story.name}
-                className="rounded-2xl border border-gray-100 bg-white overflow-hidden hover:shadow-lg transition-shadow"
+                key={story.title}
+                className="rounded-3xl border border-gray-100 bg-white overflow-hidden card-hover"
               >
-                <div className="aspect-[16/7] bg-gradient-to-br from-primary/10 to-secondary/10 flex items-center justify-center">
-                  <span className="text-gray-400 text-sm">Photo of {story.name}</span>
-                </div>
-                <div className="p-6">
-                  <span className="text-xs font-medium text-primary bg-primary/10 px-2 py-1 rounded-full">
+                <div className="aspect-[16/7] bg-gradient-to-br from-primary/10 to-secondary/10 flex items-center justify-center relative">
+                  <div className="text-center p-4">
+                    <div className="text-4xl mb-2">📸</div>
+                    <span className="text-gray-400 text-sm">Photo placeholder</span>
+                  </div>
+                  <span className="absolute top-4 left-4 text-xs font-semibold text-primary bg-white/90 backdrop-blur-sm px-3 py-1 rounded-full shadow-sm">
                     {story.program}
                   </span>
-                  <h2 className="text-xl font-bold text-foreground mt-3 mb-2">
-                    {story.title}
-                  </h2>
-                  <p className="text-sm text-gray-500 mb-3">
-                    {story.name}
-                    {story.age > 0 && `, age ${story.age}`} — {story.location}
+                </div>
+                <div className="p-7">
+                  <h2 className="text-xl font-bold text-foreground mb-2">{story.title}</h2>
+                  <p className="text-sm text-gray-500 flex items-center gap-1 mb-4">
+                    <MapPin className="h-3.5 w-3.5" />
+                    {story.name} — {story.location}
                   </p>
-                  <p className="text-gray-600 leading-relaxed mb-4">{story.summary}</p>
-                  <blockquote className="border-l-4 border-primary/30 pl-4 italic text-gray-500 text-sm">
-                    <Quote className="h-4 w-4 text-primary/40 mb-1" />
-                    &ldquo;{story.quote}&rdquo;
+                  <p className="text-gray-600 leading-relaxed mb-5">{story.summary}</p>
+                  <blockquote className="relative bg-muted rounded-xl p-5">
+                    <Quote className="absolute -top-2 -left-1 h-6 w-6 text-primary/30" />
+                    <p className="text-gray-600 text-sm italic leading-relaxed">
+                      &ldquo;{story.quote}&rdquo;
+                    </p>
                   </blockquote>
                 </div>
               </article>
@@ -137,12 +128,11 @@ export default function StoriesPage() {
             Help Write More Success Stories
           </h2>
           <p className="text-gray-600 mb-8">
-            Your support creates the next chapter in a child&apos;s life. Donate today and be
-            part of a story of transformation.
+            Your support creates the next chapter in someone&apos;s life.
           </p>
           <Link
             href="/donate"
-            className="inline-flex items-center justify-center gap-2 rounded-full bg-primary text-white px-8 py-3 font-semibold hover:bg-primary-dark transition-colors"
+            className="inline-flex items-center justify-center gap-2 rounded-full bg-gradient-to-r from-primary to-primary-dark text-white px-8 py-3.5 font-semibold hover:shadow-lg transition-all"
           >
             <Heart className="h-5 w-5" />
             Donate Now
